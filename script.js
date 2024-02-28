@@ -2,27 +2,27 @@
 const sendInput = document.querySelector('#input');
 const conteiner = document.querySelector('.items');
 
-sendInput.addEventListener('keydown', function(){
+sendInput.addEventListener('keydown', function(event){
     const text = sendInput.value;
 
+    if (event.key == 'Enter'){
     const newMessage = document.createElement('div');
     newMessage.classList.add('items');
     newMessage.textContent = text;
-
+     
+    newMessage.addEventListener('click', function(){
+      newMessage.classList.toggle('done');
+     });
+      
+   
     if(text != ''){
         conteiner.append(newMessage);
     }
     
     sendInput.value = '';
-
-    const elements = document.querySelectorAll('div');
-
-    for (let elem of elements) {
-      elem.addEventListener('click', function(){
-        elem.classList.toggle('done');
-     });
-      }
+    }
     })
+  
 /* Пустые элементы не должны добавляться */
 
 /* Если кликнуть на элемент списка, он зачеркивается */
